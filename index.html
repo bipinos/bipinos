@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bikinos - Calculator</title>
+<style>
+body{font-family: -apple-system, BlinkMacSystemFont, sans-serif; background:#f6f7fb; margin:0; padding:20px; display:flex; justify-content:center; align-items:center; min-height:100vh}
+.card{background:white; padding:30px; border-radius:20px; box-shadow:0 10px 40px rgba(0,0,0,0.1); width:100%; max-width:380px; text-align:center}
+h1{margin:0 0 10px; font-size:28px}
+p{color:#666; margin-bottom:20px}
+input{width:100%; padding:14px; border:1px solid #ddd; border-radius:12px; font-size:18px; box-sizing:border-box; margin:10px 0}
+button{width:100%; padding:14px; background:black; color:white; border:0; border-radius:12px; font-size:18px; font-weight:600; cursor:pointer; margin-top:10px}
+#result{margin-top:20px; font-size:20px; font-weight:700; color:#111}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>bikinos</h1>
+<p>Your calculator is LIVE</p>
+<input id="a" type="number" placeholder="Enter number 1">
+<input id="b" type="number" placeholder="Enter number 2">
+<button onclick="calc()">Calculate</button>
+<div id="result"></div>
+</div>
+<script>
+function calc(){
+ let x=parseFloat(document.getElementById('a').value)||0;
+ let y=parseFloat(document.getElementById('b').value)||0;
+ document.getElementById('result').innerText='Result: '+(x+y);
+}
+</script>
+</body>
+</html>
