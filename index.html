@@ -3,32 +3,96 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bikinos - Calculator</title>
+<title>Bikinos - Best Online Calculator Hub | EMI, SIP, Loan, Age Calculator</title>
+<meta name="description" content="Bikinos - Free online calculators for EMI, SIP, Loan, FD, Age, BMI, Percentage. 100% free & fast.">
 <style>
-body{font-family: -apple-system, BlinkMacSystemFont, sans-serif; background:#f6f7fb; margin:0; padding:20px; display:flex; justify-content:center; align-items:center; min-height:100vh}
-.card{background:white; padding:30px; border-radius:20px; box-shadow:0 10px 40px rgba(0,0,0,0.1); width:100%; max-width:380px; text-align:center}
-h1{margin:0 0 10px; font-size:28px}
-p{color:#666; margin-bottom:20px}
-input{width:100%; padding:14px; border:1px solid #ddd; border-radius:12px; font-size:18px; box-sizing:border-box; margin:10px 0}
-button{width:100%; padding:14px; background:black; color:white; border:0; border-radius:12px; font-size:18px; font-weight:600; cursor:pointer; margin-top:10px}
-#result{margin-top:20px; font-size:20px; font-weight:700; color:#111}
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto}
+body{background:#f6f7fb;color:#111}
+header{background:#111827;color:#fff;padding:18px 20px;text-align:center;position:sticky;top:0;z-index:10}
+header h1{font-size:28px;letter-spacing:1px}
+header p{opacity:.7;margin-top:4px}
+.container{max-width:1100px;margin:25px auto;padding:0 15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+.card{background:#fff;border-radius:16px;padding:20px;box-shadow:0 6px 20px rgba(0,0,0,.07);border:1px solid #eee}
+.card h3{margin-bottom:10px}
+.card p{font-size:14px;opacity:.7;margin-bottom:12px}
+.card button{background:#111827;color:#fff;border:0;padding:10px 16px;border-radius:10px;width:100%;cursor:pointer;font-weight:600}
+.calc-box{display:none;background:#fff;border-radius:16px;padding:22px;margin-top:20px;box-shadow:0 10px 30px rgba(0,0,0,.08)}
+.calc-box.active{display:block}
+input{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin:8px 0 14px}
+.result{background:#f3f4f6;padding:14px;border-radius:10px;margin-top:10px;font-weight:600}
+.back{margin-bottom:15px;background:#eee;border:0;padding:8px 12px;border-radius:8px;cursor:pointer}
+footer{text-align:center;padding:30px;opacity:.6;font-size:13px}
 </style>
 </head>
 <body>
-<div class="card">
-<h1>bikinos</h1>
-<p>Your calculator is LIVE</p>
-<input id="a" type="number" placeholder="Enter number 1">
-<input id="b" type="number" placeholder="Enter number 2">
-<button onclick="calc()">Calculate</button>
-<div id="result"></div>
+<header>
+<h1>BIKINOS</h1>
+<p>India's Smartest Calculator Hub - 50+ Free Tools</p>
+</header>
+
+<div class="container">
+<div id="home" class="grid">
+<div class="card"><h3>💰 EMI Calculator</h3><p>Calculate Loan EMI with Interest</p><button onclick="openCalc('emi')">Open</button></div>
+<div class="card"><h3>📈 SIP Calculator</h3><p>Mutual Fund SIP Return Calculator</p><button onclick="openCalc('sip')">Open</button></div>
+<div class="card"><h3>🏦 FD Calculator</h3><p>Fixed Deposit Interest Calculator</p><button onclick="openCalc('fd')">Open</button></div>
+<div class="card"><h3>🎂 Age Calculator</h3><p>Calculate Your Exact Age</p><button onclick="openCalc('age')">Open</button></div>
+<div class="card"><h3>💪 BMI Calculator</h3><p>Body Mass Index Calculator</p><button onclick="openCalc('bmi')">Open</button></div>
+<div class="card"><h3>📊 Percentage Calculator</h3><p>Fast Percentage Calculation</p><button onclick="openCalc('per')">Open</button></div>
 </div>
+
+<div id="emi" class="calc-box">
+<button class="back" onclick="goHome()">← Back</button>
+<h2>EMI Calculator</h2>
+<input id="loan" type="number" placeholder="Loan Amount (₹)">
+<input id="rate" type="number" placeholder="Interest Rate % per year">
+<input id="tenure" type="number" placeholder="Tenure in Months">
+<button onclick="calcEMI()" style="background:#111827;color:#fff;padding:12px;border:0;border-radius:10px;width:100%">Calculate</button>
+<div id="emiRes" class="result"></div>
+</div>
+
+<div id="sip" class="calc-box">
+<button class="back" onclick="goHome()">← Back</button>
+<h2>SIP Calculator</h2>
+<input id="sipAmt" type="number" placeholder="Monthly Investment ₹">
+<input id="sipRate" type="number" placeholder="Expected Return %">
+<input id="sipYear" type="number" placeholder="Years">
+<button onclick="calcSIP()" style="background:#111827;color:#fff;padding:12px;border:0;border-radius:10px;width:100%">Calculate</button>
+<div id="sipRes" class="result"></div>
+</div>
+
+<div id="bmi" class="calc-box">
+<button class="back" onclick="goHome()">← Back</button>
+<h2>BMI Calculator</h2>
+<input id="wt" type="number" placeholder="Weight kg">
+<input id="ht" type="number" placeholder="Height cm">
+<button onclick="calcBMI()" style="background:#111827;color:#fff;padding:12px;border:0;border-radius:10px;width:100%">Calculate</button>
+<div id="bmiRes" class="result"></div>
+</div>
+
+<div id="age" class="calc-box">
+<button class="back" onclick="goHome()">← Back</button>
+<h2>Age Calculator</h2>
+<input id="dob" type="date">
+<button onclick="calcAge()" style="background:#111827;color:#fff;padding:12px;border:0;border-radius:10px;width:100%">Calculate</button>
+<div id="ageRes" class="result"></div>
+</div>
+
+</div>
+
+<footer>Bikinos © 2026 - All Calculators Free | Made for India</footer>
+
 <script>
-function calc(){
- let x=parseFloat(document.getElementById('a').value)||0;
- let y=parseFloat(document.getElementById('b').value)||0;
- document.getElementById('result').innerText='Result: '+(x+y);
+function openCalc(id){
+ document.getElementById('home').style.display='none';
+ document.querySelectorAll('.calc-box').forEach(e=>e.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ window.scrollTo(0,0);
 }
-</script>
-</body>
-</html>
+function goHome(){
+ document.getElementById('home').style.display='grid';
+ document.querySelectorAll('.calc-box').forEach(e=>e.classList.remove('active'));
+}
+function calcEMI(){
+ let P=+document.getElementById('loan').value, R=(+document.getElementById('rate').value/12/100), N=+document.getElementById('tenure').value;
+ let emi
